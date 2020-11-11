@@ -1,0 +1,506 @@
+{
+	"info": {
+		"_postman_id": "8086f548-601e-4271-a3ad-847b3e01df46",
+		"name": "r07525097",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "member",
+			"item": [
+				{
+					"name": "Sign Up",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"password\":\"11111\",\n\t\"roles\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/signup/test1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"signup",
+								"test1"
+							]
+						},
+						"description": "{\r\n    \"id\": 1,\r\n    \"username\": \"test1\",\r\n    \"password_hash\": \"pbkdf2:sha256:150000$2cknePoB$919911d175b520a7f32ec8e5f7298c0d9edee4664697bd5f629a5b92f8a57a16\",\r\n    \"roles\": 1,\r\n    \"roledesc\": null\r\n}"
+					},
+					"response": []
+				},
+				{
+					"name": "Log In",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\":\"test1\",\n\t\"password\":\"11111\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/auth/login",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"auth",
+								"login"
+							]
+						},
+						"description": "{\r\n    \"access_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1NzczNjkzODUsImlhdCI6MTU3NzM2ODc4NSwibmJmIjoxNTc3MzY4Nzg1LCJpZGVudGl0eSI6MX0._2aYLFD9XTl4G3T2tKPbc9ZpQgM8LxddAZaaiNNDExs\"\r\n}"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "event",
+			"item": [
+				{
+					"name": "Add Event",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"eventtype\": 1,\r\n  \"eventdesc\": \"The class of database system which teacher is Dr.Chang\",\r\n  \"eventdate\": \"2019-12-26T07:24:03.391Z\",\r\n  \"startingtime\": \"2019-12-26T07:24:03.391Z\",\r\n  \"endingtime\": \"2019-12-26T07:24:03.391Z\",\r\n  \"saleroles\": 1,\r\n  \"saleslimit\": 4000,\r\n  \"salespermember\": 4\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/event/DBS1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"event",
+								"DBS1"
+							]
+						},
+						"description": "{\r\n    \"id\": 1,\r\n    \"username\": \"DBS1\",\r\n    \"eventtype\": 1,\r\n    \"eventdesc\": \"The class of database system which teacher is Dr.Chang\",\r\n    \"eventdate\": \"2019-12-26T07:24:03.391Z\",\r\n    \"startingtime\": \"2019-12-26T07:24:03.391Z\",\r\n    \"endingtime\": \"2019-12-26T07:24:03.391Z\",\r\n    \"saleroles\": 1,\r\n    \"saleslimit\": 4000,\r\n    \"salespermember\": 4\r\n}"
+					},
+					"response": []
+				},
+				{
+					"name": "Get all Event",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/getallevent",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"getallevent"
+							]
+						},
+						"description": "[\r\n    {\r\n        \"id\": 2,\r\n        \"username\": \"DBS123\",\r\n        \"eventtype\": 1,\r\n        \"eventdesc\": \"The class of database system which teacher is Dr.Chang\",\r\n        \"eventdate\": \"2019-12-26T07:24:03.391Z\",\r\n        \"startingtime\": \"2019-12-26T07:24:03.391Z\",\r\n        \"endingtime\": \"2019-12-26T07:24:03.391Z\",\r\n        \"saleroles\": 1,\r\n        \"saleslimit\": 4000,\r\n        \"salespermember\": 4\r\n    },\r\n    {\r\n        \"id\": 3,\r\n        \"username\": \"DBS1\",\r\n        \"eventtype\": 1,\r\n        \"eventdesc\": \"The class of database system which teacher is Dr.Chang\",\r\n        \"eventdate\": \"2019-12-26T07:24:03.391Z\",\r\n        \"startingtime\": \"2019-12-26T07:24:03.391Z\",\r\n        \"endingtime\": \"2019-12-26T07:24:03.391Z\",\r\n        \"saleroles\": 1,\r\n        \"saleslimit\": 4000,\r\n        \"salespermember\": 4\r\n    }\r\n]"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Event",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/event/DBS3",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"event",
+								"DBS3"
+							]
+						},
+						"description": "{\r\n    \"message\": \"event deleted\"\r\n}"
+					},
+					"response": []
+				},
+				{
+					"name": "Modify Event",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"eventtype\": 1,\r\n    \"eventdesc\": \"The class of database system which teacher is Dr.Chang\",\r\n    \"eventdate\": \"2019-12-26T07:24:03.391Z\",\r\n    \"startingtime\": \"2019-12-26T07:24:03.391Z\",\r\n    \"endingtime\": \"2019-12-26T07:24:03.391Z\",\r\n    \"saleroles\": 1,\r\n    \"saleslimit\": 10000,\r\n    \"salespermember\": 4,\r\n    \"changename\":\"DBS100\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/modifyevent/DBS1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"modifyevent",
+								"DBS1"
+							]
+						},
+						"description": "{\r\n    \"id\": 3,\r\n    \"username\": \"DBS100\",\r\n    \"eventtype\": 1,\r\n    \"eventdesc\": \"The class of database system which teacher is Dr.Chang\",\r\n    \"eventdate\": \"2019-12-26T07:24:03.391Z\",\r\n    \"startingtime\": \"2019-12-26T07:24:03.391Z\",\r\n    \"endingtime\": \"2019-12-26T07:24:03.391Z\",\r\n    \"saleroles\": 1,\r\n    \"saleslimit\": 10000,\r\n    \"salespermember\": 4\r\n}"
+					},
+					"response": []
+				},
+				{
+					"name": "Get an Event",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/event/DBS100",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"event",
+								"DBS100"
+							]
+						},
+						"description": "{\r\n    \"id\": 4,\r\n    \"username\": \"DBS1\",\r\n    \"eventtype\": 1,\r\n    \"eventdesc\": \"The class of database system which teacher is Dr.Chang\",\r\n    \"eventdate\": \"2019-12-26T07:24:03.391Z\",\r\n    \"startingtime\": \"2019-12-26T07:24:03.391Z\",\r\n    \"endingtime\": \"2019-12-26T07:24:03.391Z\",\r\n    \"saleroles\": 1,\r\n    \"saleslimit\": 4000,\r\n    \"salespermember\": 4\r\n}"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "sales",
+			"item": [
+				{
+					"name": "Buy Ticket",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"event_id\": 2,\r\n  \"ticket_num\": 10\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/buyTicket/test1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"buyTicket",
+								"test1"
+							]
+						},
+						"description": "{\r\n    \"sales_id\": 4,\r\n    \"user_id\": 1,\r\n    \"event_id\": 2,\r\n    \"ticket_num\": 10,\r\n    \"created_at\": \"2019-12-26T22:04:57\"\r\n}"
+					},
+					"response": []
+				},
+				{
+					"name": "Get all sales",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"startingtime\": \"2019-12-24T21:15:01\",\r\n  \"endingtime\": \"2019-12-28T21:15:01\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/getsales",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"getsales"
+							]
+						},
+						"description": "[\r\n    {\r\n        \"sales_id\": 4,\r\n        \"user_id\": 1,\r\n        \"event_id\": 2,\r\n        \"ticket_num\": 10,\r\n        \"created_at\": \"2019-12-26T22:04:57\"\r\n    },\r\n    {\r\n        \"sales_id\": 5,\r\n        \"user_id\": 1,\r\n        \"event_id\": 2,\r\n        \"ticket_num\": 10,\r\n        \"created_at\": \"2019-12-26T22:05:34\"\r\n    },\r\n    {\r\n        \"sales_id\": 6,\r\n        \"user_id\": 1,\r\n        \"event_id\": 2,\r\n        \"ticket_num\": 10,\r\n        \"created_at\": \"2019-12-26T22:05:35\"\r\n    },\r\n    {\r\n        \"sales_id\": 7,\r\n        \"user_id\": 1,\r\n        \"event_id\": 2,\r\n        \"ticket_num\": 10,\r\n        \"created_at\": \"2019-12-26T22:05:36\"\r\n    },\r\n    {\r\n        \"sales_id\": 8,\r\n        \"user_id\": 1,\r\n        \"event_id\": 2,\r\n        \"ticket_num\": 10,\r\n        \"created_at\": \"2019-12-26T22:05:36\"\r\n    },\r\n    {\r\n        \"sales_id\": 9,\r\n        \"user_id\": 1,\r\n        \"event_id\": 2,\r\n        \"ticket_num\": 10,\r\n        \"created_at\": \"2019-12-26T22:05:37\"\r\n    }\r\n]"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Sale",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/deletesale/6",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"deletesale",
+								"6"
+							]
+						},
+						"description": "{\r\n    \"message\": \"sale deleted\"\r\n}"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Member Sales",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"startingtime\": \"2019-12-24T21:15:01\",\r\n  \"endingtime\": \"2019-12-28T21:15:01\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/sales/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"sales",
+								"1"
+							]
+						},
+						"description": "[\r\n    {\r\n        \"sales_id\": 4,\r\n        \"user_id\": 1,\r\n        \"event_id\": 2,\r\n        \"ticket_num\": 10,\r\n        \"created_at\": \"2019-12-26T22:04:57\"\r\n    },\r\n    {\r\n        \"sales_id\": 5,\r\n        \"user_id\": 1,\r\n        \"event_id\": 2,\r\n        \"ticket_num\": 10,\r\n        \"created_at\": \"2019-12-26T22:05:34\"\r\n    },\r\n    {\r\n        \"sales_id\": 6,\r\n        \"user_id\": 1,\r\n        \"event_id\": 2,\r\n        \"ticket_num\": 10,\r\n        \"created_at\": \"2019-12-26T22:05:35\"\r\n    },\r\n    {\r\n        \"sales_id\": 7,\r\n        \"user_id\": 1,\r\n        \"event_id\": 2,\r\n        \"ticket_num\": 10,\r\n        \"created_at\": \"2019-12-26T22:05:36\"\r\n    },\r\n    {\r\n        \"sales_id\": 8,\r\n        \"user_id\": 1,\r\n        \"event_id\": 2,\r\n        \"ticket_num\": 10,\r\n        \"created_at\": \"2019-12-26T22:05:36\"\r\n    },\r\n    {\r\n        \"sales_id\": 9,\r\n        \"user_id\": 1,\r\n        \"event_id\": 2,\r\n        \"ticket_num\": 10,\r\n        \"created_at\": \"2019-12-26T22:05:37\"\r\n    }\r\n]"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "memberType",
+			"item": [
+				{
+					"name": "Modify MemberTypeDesc",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"roledesc\": \"VIPS++\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/membertype/test1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"membertype",
+								"test1"
+							]
+						},
+						"description": "{\r\n    \"id\": 1,\r\n    \"username\": \"test1\",\r\n    \"password_hash\": \"pbkdf2:sha256:150000$2cknePoB$919911d175b520a7f32ec8e5f7298c0d9edee4664697bd5f629a5b92f8a57a16\",\r\n    \"roles\": 1,\r\n    \"roledesc\": \"VIPS++\"\r\n}"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "eventType",
+			"item": [
+				{
+					"name": "Modify EventTypeDesc",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"eventtypedesc\":\"Course20000\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/eventtype/DBS20000",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"eventtype",
+								"DBS20000"
+							]
+						},
+						"description": "{\r\n    \"id\": 4,\r\n    \"username\": \"DBS1\",\r\n    \"eventtype\": 1,\r\n    \"eventdesc\": \"Course20000\",\r\n    \"eventdate\": \"2019-12-26T07:24:03.391Z\",\r\n    \"startingtime\": \"2019-12-26T07:24:03.391Z\",\r\n    \"endingtime\": \"2019-12-26T07:24:03.391Z\",\r\n    \"saleroles\": 1,\r\n    \"saleslimit\": 4000,\r\n    \"salespermember\": 4\r\n}"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

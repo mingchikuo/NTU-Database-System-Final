@@ -1,0 +1,481 @@
+swagger: '2.0'
+info:
+  description: "This is a sample of Database System server."
+  version: "1.0.0"
+  title: "Database System"
+  contact:
+    email: "r07525058@ntu.edu.tw"
+tags:
+- name: "member"
+  description: "Operations about members"
+- name: "event"
+  description: "Operations about events"
+- name: "sales"
+  description: "Operations about sales"
+- name: "memberType"
+  description: "Operations about member type"
+- name: "eventType"
+  description: "Operations about event type"
+
+paths:
+  /signup:
+    post:
+      tags:
+        - "member"
+      summary: Adds a new member
+      parameters:
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          type: object
+          properties:
+            userAccount:
+              type: string
+              example: "test1234"
+            userPassword:
+              type: string
+              format: password
+              example: "abcd1234"
+            userRoles:
+              type: integer
+              example: 1
+      responses:
+        201:
+          description: OK
+          schema:
+            $ref: "#/definitions/Member"
+        400:
+          description: Error
+  /login:
+    post:
+      tags:
+        - "member"
+      summary: Member login
+      parameters:
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          type: object
+          properties:
+            userAccount:
+              type: string
+              example: "test1234"
+            userPassword:
+              type: string
+              format: password
+              example: "abcd1234"
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              memberID:
+                type: string
+                format: uuid
+              token:
+                type: string
+                description: token must include member_index, member_roles
+                example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtZW1iZXJfaWQiOiIzZmE4NWY2NC01NzE3LTQ1NjItYjNmYy0yYzk2M2Y2NmFmYTYiLCJtZW1iZXJfcm9sZXMiOjEsImlhdCI6MTUxNjIzOTAyMn0.n4Purr7_xZk1Z_HwtFaoJ_FDTjBl2Hcgj2IPG54KcZw
+    
+  /event:
+    get:
+      summary: Get all Event
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Event'
+        400:
+          description: Error
+      tags:
+        - "event"
+  /event/{eventID}:
+    get:
+      tags:
+        - event
+      summary: Get particular event by event uuid
+      parameters:
+      - name: "eventID"
+        in: "path"
+        description: "The uuid of event"
+        required: true
+        type: "string"
+        format: uuid
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/Event'
+        400:
+          description: Error
+  /addEvent:
+    post:
+      summary: Add new Event
+      parameters:
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          type: object
+          properties:
+            eventName:
+              type: string
+              maxLength: 100
+              example: "Database class"
+            eventType:
+              type: integer
+              example: 1
+            eventDescription:
+              type: string
+              example: "The class of database system which teacher is Dr.Chang"
+            eventDate:
+              type: string
+              format: date-time
+            startingTime:
+              type: string
+              format: date-time
+            endingTime:
+              type: string
+              format: date-time
+            saleRoles:
+              type: integer
+              example: 1
+            salesLimit:
+              type: integer
+              example: 4000
+            salesPerMember:
+              type: integer
+              example: 4
+      responses:
+        200:
+          description: OK
+        400:
+          description: Error
+      tags:
+        - "event"
+  /modifyEvent:
+    post:
+      summary: Modify Event
+      parameters:
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: '#/definitions/Event'
+      responses:
+        200:
+          description: OK
+        400:
+          description: Error
+      tags:
+        - "event"
+  /deleteEvent/{eventID}:
+    delete:
+      tags:
+        - event
+      summary: Delete particular event by event uuid
+      parameters:
+      - in: "path"
+        name: "eventID"
+        required: true
+        type: string
+        format: uuid
+        description: The uuid of event which want to delete
+      responses:
+        200:
+          description: OK
+        400:
+          description: Error
+        
+  /buyTicket:
+    post:
+      tags:
+        - "sales"
+      summary: Buy tickets
+      parameters:
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          type: object
+          properties:
+            memberID:
+              type: string
+              format: uuid
+            eventID:
+              type: string
+              format: uuid
+            numberOfTicket:
+              type: integer
+              example: 2
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            properties:
+              memberID:
+                type: string
+                format: uuid
+        400:
+          description: Error
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+                example: The role of mamber can not by this event
+  /cancelTicket/{salesID}:
+    delete:
+      tags:
+        - sales
+      summary: Delete particular sales by sales uuid
+      parameters:
+      - in: "path"
+        name: "salesID"
+        required: true
+        type: string
+        format: uuid
+        description: The uuid of sales which want to delete
+      responses:
+        200:
+          description: OK
+        400:
+          description: Error
+  /sales:
+    get:
+      summary: Get all Sales
+      parameters:
+      - name: "body"
+        in: "body"
+        description: "The time interval"
+        required: false
+        schema:
+          type: object
+          properties:
+            startTime:
+              type: string
+              format: date-time
+            endTime:
+              type: string
+              format: date-time
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Sales'
+        400:
+          description: Error
+      tags:
+        - "sales"
+  /sales/{memberID}:
+    get:
+      tags:
+        - "sales"
+      summary: Get sales list by member uuid
+      parameters:
+      - name: "memberID"
+        in: "path"
+        description: "The uuid of member"
+        required: true
+        type: "string"
+        format: uuid
+      - name: "body"
+        in: "body"
+        description: "The time interval"
+        required: false
+        schema:
+          type: object
+          properties:
+            startTime:
+              type: string
+              format: date-time
+            endTime:
+              type: string
+              format: date-time
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Sales'
+        400:
+          description: Error
+          
+  /memberType:
+    post:
+      tags:
+        - "memberType"
+      summary: Adds a new member type
+      parameters:
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          type: "object"
+          properties:
+            userID:
+              type: string
+              example: "3fa85f64-5717-4562-b3fc-2c963f66afa6"
+            typeDescription:
+              type: string
+              example: "VIP"
+      responses:
+        201:
+          description: OK
+          schema:
+            $ref: '#/definitions/MemberType'
+        400:
+          description: Error
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+                example: The role of mamber can add member type
+              
+  /eventType:
+    post:
+      tags:
+        - "eventType"
+      summary: Adds a new event type
+      parameters:
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          type: "object"
+          properties:
+            userID:
+              type: string
+              example: "3fa85f64-5717-4562-b3fc-2c963f66afa6"
+            typeDescription:
+              type: string
+              example: "Course"
+      responses:
+        201:
+          description: OK
+          schema:
+            $ref: '#/definitions/EventType'
+        400:
+          description: Error
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+                example: The role of mamber can add event type
+  
+    
+definitions:
+  Member:
+    type: "object"
+    properties:
+      memberID:
+        type: string
+        format: uuid
+      memberAccount:
+        type: string
+        maxLength: 50
+        example: "test1234"
+      memberPassword:
+        type: string
+        format: password
+        description: password after encryption
+        maxLength: 50
+        example: "E19D5CD5AF0378DA05F63F891C7467AF"
+      memberRoles:
+        type: integer
+        example: 1
+      rolesDescription:
+        type: string
+        example: VIP
+    xml:
+      name: "Member"
+      
+  MemberType:
+    type: "object"
+    properties:
+      roleCode:
+        type: integer
+        example: 1
+      roleDescription:
+        type: string
+        example: VIP
+      
+  Event:
+    type: "object"
+    properties:
+      eventID:
+        type: string
+        format: uuid
+      eventName:
+        type: string
+        maxLength: 100
+        example: "Database class"
+      eventType:
+        type: integer
+        example: 1
+      eventTypeDescription:
+        type: string
+        example: course
+      eventDescription:
+        type: string
+        example: "The class of database system which teacher is Dr.Chang"
+      eventDate:
+        type: string
+        format: date-time
+      startingTime:
+        type: string
+        format: date-time
+      endingTime:
+        type: string
+        format: date-time
+      saleRoles:
+        type: integer
+        example: 1
+      salesLimit:
+        type: integer
+        example: 4000
+      salesPerMember:
+        type: integer
+        example: 4
+    xml:
+      name: "Member"
+      
+  EventType:
+    type: "object"
+    properties:
+      roleCode:
+        type: integer
+        example: 1
+      roleDescription:
+        type: string
+        example: course
+  
+  Sales:
+    type: object
+    properties:
+      salesID:
+        type: string
+        format: uuid
+      memberID:
+        type: string
+        format: uuid
+      eventID:
+        type: string
+        format: uuid
+      numberOfTicket:
+        type: integer
+        example: 2
+      timeOfSales:
+        type: string
+        format: date-time
